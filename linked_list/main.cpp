@@ -27,7 +27,7 @@ int main()
     std::cout << "Successful!\nEnter new value or -999: ";
     std::cin >> value;
   }
-  std::cout << "Linked list members: ";
+  std::cout << "Linked list members: " << std::endl;
   Node<int>::iterator lastIt{last->next_};
   for(Node<int>::iterator ptr{first}; ptr != lastIt; ++ptr){
     std::cout << *ptr << std::endl; 

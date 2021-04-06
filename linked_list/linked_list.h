@@ -8,14 +8,13 @@ public:
 
   T info_;
   Node* next_ = nullptr;
+
   class iterator{
   public:
     iterator() = default;
     iterator(Node<T>* nodeptr){
       current = nodeptr;
     }
-    //it1 = head.begin();
-    //it1++
     iterator operator++(){
       current = current->next_;
       return *this;
@@ -23,14 +22,10 @@ public:
     T operator*(){
       return current->info_;
     }
-    // auto it1 = head.begin();
-    // auto it2 = head.end();
-    // it != it2
     bool operator!=(const Node<T>::iterator& other){
-      return current == other.current;
+      return current != other.current;
     }
   private:
     Node<T>* current;
   };
-private:
 };
