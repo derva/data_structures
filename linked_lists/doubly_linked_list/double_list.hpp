@@ -41,8 +41,6 @@ class List {
       head_ = other.head_;
       tail_ = other.tail_;
       sentinel = other.sentinel;
-      // tail_->next_ = sentinel;
-      // sentinel->back_ = tail_;
       size_ = other.size_;
       other.head_ = other.tail_ = nullptr;
       other.size_ = 0;
@@ -114,7 +112,7 @@ class List {
       sentinel->back_ = tail_;
       sentinel->next_ = nullptr;
     } 
-    // Imamo sentinel/cuvara pa nam ovaj if postajre nepotreban
+    // We have our sentinel, so we can skip this check
     // else if (head_->next_ == nullptr && head_->back_ == nullptr) {
     //   auto novi = new Node{element, nullptr, tail_};
     //   head_->next_ = novi;
@@ -234,13 +232,13 @@ class List {
   public:
   class iterator {
 public:
-    // ZA RAD SA ALGORITMIMA IZ STDL
+    //algorithms
     using iterator_category = std::bidirectional_iterator_tag;
     using value_type = T;
     using pointer = T*;
     using reference = T&;
     using difference_type = size_t;
-    // bidirekcioni itetator
+    // bidirectional itetator
     iterator() = default;
     iterator(Node* p) : p_{p} {}
     iterator(const iterator& other) : p_{other.p_} {}
@@ -282,8 +280,6 @@ private:
     } else if (it == sentinel) {
       return;
     } 
-    // Buduci kako imamo sentinel/cuvara, ovaj if mozemo izostaviti
-    // i dodatno ubrazti program
     // else if (it->back_ == nullptr && it->next_ == nullptr) {
     //   auto novi = new Node{value, head_, nullptr};
     //   it->back_ = novi;
@@ -308,12 +304,11 @@ private:
     }
     size_++;
   }
-  // kraj inserta
+  // end insert
   void remove(iterator& it) {
     if (empty()) {
       return;
     }
-    // Ukoliko zelimo da je iterator poslije remova validan
     // auto ittemp = it;
     // ittemp--;
     if (it->back_ == nullptr && it->next_->next_ == nullptr) {
