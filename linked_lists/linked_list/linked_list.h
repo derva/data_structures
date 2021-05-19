@@ -92,9 +92,14 @@ public:
     iterator(Node* other) { current = other; }
     iterator(const iterator& other) { current = other.current; }
     T& operator*() { return current->info_; }
-    iterator operator++() {
+    iterator& operator++() {
       current = current->next_;
       return *this;
+    }
+    iterator operator++(int){
+      auto temp = current;
+      current = current -> next_;
+      return iteartor{temp};
     }
     bool operator==(const iterator& other) { return current == other.current; }
     bool operator!=(const iterator& other) { return current != other.current; }
